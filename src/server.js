@@ -2,6 +2,7 @@ import express from "express"
 import mongoose from "mongoose"
 import listEndpoints from "express-list-endpoints"
 import cors from "cors"
+import cartRoutes from "./services/carts/index.js"
 import productsRouter from "./services/products/productsRoute.js"
 /* import { notFoundHandler, badRequestHandler, genericErrorHandler } from "./errorHandlers.js" */
 
@@ -14,6 +15,7 @@ const port = process.env.PORT || 3003
 server.use(cors())
 server.use(express.json())
 
+server.use("/carts", cartRoutes)
 // ************************* ROUTES ************************************
 
 server.use("/products", productsRouter)
@@ -26,7 +28,8 @@ server.use(genericErrorHandler) */
 
 mongoose.connect(process.env.MONGO_CONNECTION)
 
-mongoose.connection.on("connected", () => {
+mongoose.connection.on("error", err => {
+    console.log(err)
   console.log("Successfully connected to Mongo!")
   server.listen(port, () => {
     console.table(listEndpoints(server))
