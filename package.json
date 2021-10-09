@@ -1,12 +1,12 @@
 {
-  "name": "m6-d10_teamwork_amazon-api",
+  "name": "M6-D10_TeamWork_Amazon-API",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon -r dotenv/config ./src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon -r dotenv/config ./src/server.js"
   },
   "repository": {
     "type": "git",
