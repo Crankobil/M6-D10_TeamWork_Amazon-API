@@ -6,6 +6,7 @@ const cartRoutes = express.Router()
 
 cartRoutes.post("/:ownerId/addToCart", async (req, res, next) => {
     try {
+        const productId = req.body.productId
         const purchasedProduct = await ProductModel.findById(productId)
 
         if (purchasedProduct) {
@@ -37,7 +38,7 @@ cartRoutes.post("/:ownerId/addToCart", async (req, res, next) => {
                 res.send(cart)
             }
         } else {
-            next(createHttpError(404, `Product with id ${productId} not found`))
+            next()
         }
     } catch (error) {
         next(error)
